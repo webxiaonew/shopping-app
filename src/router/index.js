@@ -24,7 +24,7 @@ const routes = [
   },
   {
     path: '*',
-    redirect: '/home',
+    redirect: '/home/classify',
   },
 ];
 
