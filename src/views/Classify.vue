@@ -7,14 +7,27 @@
         </div>
         <!-- 一级导航 -->
         <one-tab></one-tab>
+        <!-- 二级导航 -->
+        <template v-if="showContent">
+            <side-bar></side-bar>
+        </template>
+        <van-loading size="2rem" vertical v-else />
     </div>
 </template>
 <script>
 import OneTab from '@/components/OneTab.vue';
+import SideBar from '@/components/SideBar.vue';
+import { mapState } from 'vuex';
 
 export default {
+  computed: {
+    ...mapState({
+      showContent: (state) => state.showContent,
+    }),
+  },
   components: {
     OneTab,
+    SideBar,
   },
 };
 </script>

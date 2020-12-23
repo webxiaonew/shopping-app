@@ -9,7 +9,7 @@
              @touchmove="move = true"
         >
             <div class="img-wrapper">
-                <img :src="item.imgUrl">
+                <img :src="item.imgURL">
             </div>
             <div class="tab-title">{{item.title}}</div>
         </div>
@@ -17,6 +17,9 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+import tool from '@/util/tool';
+
 export default {
   data() {
     return {
@@ -24,59 +27,115 @@ export default {
       index: 0,
       menuList: [
         {
-          id: 1,
-          title: '阿萨德是',
-          imgUrl: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2507842556,4039720334&fm=26&gp=0.jpg',
+          title: '时令水果',
+          imgURL:
+            'https://duyi-bucket.oss-cn-beijing.aliyuncs.com/img/时令水果.jpg',
         },
         {
-          id: 2,
-          title: '阿萨德是',
-          imgUrl: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2507842556,4039720334&fm=26&gp=0.jpg',
+          title: '酒水冲调',
+          imgURL:
+            'https://duyi-bucket.oss-cn-beijing.aliyuncs.com/img/酒水冲调.jpg',
         },
         {
-          id: 3,
-          title: '阿萨德是',
-          imgUrl: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2507842556,4039720334&fm=26&gp=0.jpg',
+          title: '安心乳品',
+          imgURL:
+            'https://duyi-bucket.oss-cn-beijing.aliyuncs.com/img/安心乳品.jpg',
         },
         {
-          id: 4,
-          title: '阿萨德是',
-          imgUrl: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2507842556,4039720334&fm=26&gp=0.jpg',
+          title: '休闲零食',
+          imgURL:
+            'https://duyi-bucket.oss-cn-beijing.aliyuncs.com/img/休闲零食.jpg',
         },
         {
-          id: 5,
-          title: '阿萨德是',
-          imgUrl: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2507842556,4039720334&fm=26&gp=0.jpg',
+          title: '肉蛋食材',
+          imgURL:
+            'https://duyi-bucket.oss-cn-beijing.aliyuncs.com/img/肉蛋食材.jpg',
         },
         {
-          id: 6,
-          title: '阿萨德是',
-          imgUrl: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2507842556,4039720334&fm=26&gp=0.jpg',
+          title: '新鲜蔬菜',
+          imgURL:
+            'https://duyi-bucket.oss-cn-beijing.aliyuncs.com/img/新鲜食材.jpg',
         },
         {
-          id: 7,
-          title: '阿萨德是',
-          imgUrl: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2507842556,4039720334&fm=26&gp=0.jpg',
+          title: '熟食餐饮',
+          imgURL:
+            'https://duyi-bucket.oss-cn-beijing.aliyuncs.com/img/熟食餐饮.jpg',
         },
         {
-          id: 8,
-          title: '阿萨德',
-          imgUrl: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2507842556,4039720334&fm=26&gp=0.jpg',
+          title: '海鲜水产',
+          imgURL:
+            'https://duyi-bucket.oss-cn-beijing.aliyuncs.com/img/海鲜水产.jpg',
         },
         {
-          id: 9,
-          title: '阿萨德',
-          imgUrl: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2507842556,4039720334&fm=26&gp=0.jpg',
+          title: '粮油调味',
+          imgURL:
+            'https://duyi-bucket.oss-cn-beijing.aliyuncs.com/img/粮油调味.jpg',
         },
         {
-          id: 10,
-          title: '阿萨德',
-          imgUrl: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2507842556,4039720334&fm=26&gp=0.jpg',
+          title: '某手美食',
+          imgURL:
+            'https://duyi-bucket.oss-cn-beijing.aliyuncs.com/img/某手美食.jpg',
+        },
+        {
+          title: '纸杯清洁',
+          imgURL:
+            'https://duyi-bucket.oss-cn-beijing.aliyuncs.com/img/纸品清洁.jpg',
+        },
+        {
+          title: '个人护理',
+          imgURL:
+            'https://duyi-bucket.oss-cn-beijing.aliyuncs.com/img/个人护理.jpg',
+        },
+        {
+          title: '美妆护肤',
+          imgURL:
+            'https://duyi-bucket.oss-cn-beijing.aliyuncs.com/img/美妆护肤.jpg',
+        },
+        {
+          title: '家居收纳',
+          imgURL:
+            'https://duyi-bucket.oss-cn-beijing.aliyuncs.com/img/家居收纳.jpg',
+        },
+        {
+          title: '家用电器',
+          imgURL:
+            'https://duyi-bucket.oss-cn-beijing.aliyuncs.com/img/家用电器.jpg',
+        },
+        {
+          title: '3C数码',
+          imgURL:
+            'https://duyi-bucket.oss-cn-beijing.aliyuncs.com/img/3C数码.jpg',
+        },
+        {
+          title: '母婴用品',
+          imgURL:
+            'https://duyi-bucket.oss-cn-beijing.aliyuncs.com/img/母婴用品.jpg',
+        },
+        {
+          title: '鲜花绿植',
+          imgURL:
+            'https://duyi-bucket.oss-cn-beijing.aliyuncs.com/img/鲜花绿植.jpg',
+        },
+        {
+          title: '宠物用品',
+          imgURL:
+            'https://duyi-bucket.oss-cn-beijing.aliyuncs.com/img/宠物用品.jpg',
+        },
+        {
+          title: '图书玩具',
+          imgURL:
+            'https://duyi-bucket.oss-cn-beijing.aliyuncs.com/img/图书文具.jpg',
+        },
+        {
+          title: '手表配饰',
+          imgURL:
+            'https://duyi-bucket.oss-cn-beijing.aliyuncs.com/img/手表配饰.jpg',
         },
       ],
     };
   },
   methods: {
+    ...mapActions(['getSideList']),
     scrollTo(i, e) {
       if (this.move) {
         return;
@@ -87,24 +146,16 @@ export default {
       const itemWidth = e.target.offsetWidth;
       const itemLeft = e.target.getBoundingClientRect().left;
       const wrapperWidth = oneTab.offsetWidth;
-      this.moveTo(oneTab.scrollLeft, itemWidth / 2 + itemLeft - wrapperWidth / 2);
+      tool.moveTo(oneTab.scrollLeft,
+        itemWidth / 2 + itemLeft - wrapperWidth / 2,
+        oneTab,
+        'scrollLeft');
       // 获取侧边栏数据
+      this.getSideList(this.menuList[i].title);
     },
-    moveTo(start, end) {
-      let dis = 0;
-      let speed = 5;
-      if (end < 0) {
-        speed *= -1;
-      }
-      const t = setInterval(() => {
-        dis += speed;
-        this.$refs.oneTab.scrollLeft = start + dis;
-        if (Math.abs(dis) > Math.abs(end)) {
-          this.$refs.oneTab.scrollLeft = start + end;
-          clearInterval(t);
-        }
-      }, 2);
-    },
+  },
+  mounted() {
+    this.getSideList(this.menuList[0].title);
   },
 };
 </script>
