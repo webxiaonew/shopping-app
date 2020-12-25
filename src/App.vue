@@ -1,19 +1,15 @@
 <template>
     <div id="app">
         <router-view></router-view>
-        <tab-bar />
     </div>
 </template>
 
 <script>
-import TabBar from '@/components/TabBar.vue';
-
 export default {
-  components: {
-    TabBar,
+  created() {
+    // console.log(this.$store);
+    const counterMap = JSON.parse(localStorage.getItem('goods')) || {};
+    this.$store.commit('setCounterMap', counterMap);
   },
 };
 </script>
-
-<style lang="less">
-</style>

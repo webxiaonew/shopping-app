@@ -10,6 +10,7 @@
         <!-- 二级导航 -->
         <template v-if="showContent">
             <side-bar></side-bar>
+            <goods-list></goods-list>
         </template>
         <van-loading size="2rem" vertical v-else />
     </div>
@@ -17,6 +18,7 @@
 <script>
 import OneTab from '@/components/OneTab.vue';
 import SideBar from '@/components/SideBar.vue';
+import GoodsList from '@/components/GoodsList.vue';
 import { mapState } from 'vuex';
 
 export default {
@@ -28,6 +30,7 @@ export default {
   components: {
     OneTab,
     SideBar,
+    GoodsList,
   },
 };
 </script>
