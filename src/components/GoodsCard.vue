@@ -28,13 +28,16 @@ import { mapMutations } from 'vuex';
 import Animate from '@/tools/animate';
 
 export default {
-  props: ['images', 'tags', 'title', 'desc', 'price', 'id', 'num'],
+  props: ['images', 'tags', 'title', 'desc', 'price', 'id', 'num', 'nofly'],
   methods: {
     ...mapMutations(['storeChange']),
     counter(id, num) {
       // 将计算后的购物车数量加入本地缓存
       this.storeChange({ id, value: num });
       if (num === -1) {
+        return;
+      }
+      if (this.nofly) {
         return;
       }
       // 飞入购物车--图片位置
