@@ -166,6 +166,7 @@ export default {
     overflow: auto;
     width: 375px;
     height: 104px;
+    background: #fff;
     // border: 1px solid red;
     .tab-item{
         width: 50px;

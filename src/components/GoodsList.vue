@@ -16,8 +16,8 @@
                           @load="onLoad"
                           :immediate-check='false'
                 >
-                    <goods-card v-for="(item,index) in goodsList"
-                                :key="index"
+                    <goods-card v-for="(item) in goodsList"
+                                :key="item.id"
                                 v-bind="item"
                                 :num="counterMap[item.id]"
                     >

@@ -56,14 +56,14 @@ export default {
       });
     },
   },
-  mounted() {
-    this.resetGoodsList();
-    this.getGoodsList({
-      type: this.sideList[0],
-      sortType: 'all',
-      page: 1,
-    });
-  },
+//   mounted() {
+//     this.resetGoodsList();
+//     this.getGoodsList({
+//       type: this.sideList[0],
+//       sortType: 'all',
+//       page: 1,
+//     });
+//   },
 };
 </script>
 

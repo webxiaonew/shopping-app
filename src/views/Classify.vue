@@ -1,10 +1,10 @@
 <template>
     <div class="classify-wrapper">
         <!-- 搜索 -->
-        <div class="search-btn">
+        <router-link class="search-btn" tag="div" to="/search">
             <van-icon name="search" />
             桔子特价1元1斤
-        </div>
+        </router-link>
         <!-- 一级导航 -->
         <one-tab></one-tab>
         <!-- 二级导航 -->
@@ -19,18 +19,31 @@
 import OneTab from '@/components/OneTab.vue';
 import SideBar from '@/components/SideBar.vue';
 import GoodsList from '@/components/GoodsList.vue';
-import { mapState } from 'vuex';
+import { mapState, mapMutations, mapActions } from 'vuex';
 
 export default {
   computed: {
     ...mapState({
       showContent: (state) => state.showContent,
+      sideList: (state) => state.sideList,
     }),
+  },
+  methods: {
+    ...mapMutations(['resetGoodsList']),
+    ...mapActions(['getGoodsList']),
   },
   components: {
     OneTab,
     SideBar,
     GoodsList,
+  },
+  watch: {
+    showContent() {
+      if (this.showContent) {
+        this.resetGoodsList();
+        this.getGoodsList({ type: this.sideList[0], page: 1, sortType: 'all' });
+      }
+    },
   },
 };
 </script>
@@ -48,6 +61,7 @@ export default {
         border-radius: 10px;
         color: #a1a1a1;
         font-size: 14px;
+        z-index: 12;
     }
 }
 </style>
