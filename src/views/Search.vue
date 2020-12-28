@@ -25,7 +25,7 @@
             </van-search>
         </div>
         <!-- 关键字模糊搜索 -->
-        <div class="like-search" v-if="likeList.length <=0 && showList">
+        <div class="like-search" v-if="showList">
             <van-list>
                 <van-cell v-for="item in likeList" :key="item" @click="onSearch(item)">
                     <template>
