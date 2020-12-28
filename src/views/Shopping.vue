@@ -98,7 +98,11 @@ export default {
       }
     },
     onSubmit() {
-
+      if (this.tatolNum < 1) {
+        Toast('未选中');
+        return;
+      }
+      Toast('点击了结算');
     },
   },
   created() {
